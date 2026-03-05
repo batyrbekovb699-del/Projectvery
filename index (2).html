@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoKG — Автомобили в Кыргызстане</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">AUTO<span class="logo-accent">KG</span></span>
+    </div>
+    <div class="nav-links desktop-only">
+      <a href="#catalog" class="nav-link">Каталог</a>
+      <a href="#cities" class="nav-link">Города</a>
+      <a href="#contacts" class="nav-link">Контакты</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-cart" onclick="toggleCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="btn-register" onclick="openModal('registerModal')">Регистрация</button>
+      <button class="hamburger" onclick="toggleMobileMenu()" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#catalog" onclick="closeMobileMenu()">Каталог</a>
+    <a href="#cities" onclick="closeMobileMenu()">Города</a>
+    <a href="#contacts" onclick="closeMobileMenu()">Контакты</a>
+    <a href="#" onclick="openModal('registerModal'); closeMobileMenu()">Регистрация</a>
+    <a href="#" onclick="openAdmin()">⚙ Админ</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Лучшие авто Кыргызстана
+    </div>
+    <h1 class="hero-title">
+      <span class="title-line">ТВОЙ</span>
+      <span class="title-line accent-line">АВТОМОБИЛЬ</span>
+      <span class="title-line">ЖДЁТ ТЕБЯ</span>
+    </h1>
+    <p class="hero-subtitle">Премиальные автомобили для аренды и покупки. Доставка по всему Кыргызстану.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="openModal('registerModal')">
+        <span>Регистрация</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <a href="#catalog" class="btn-secondary">
+        <span>Каталог</span>
+      </a>
+      <a href="#contacts" class="btn-outline">
+        <span>Контакты</span>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-target="150">0</span><span class="stat-label">Авто</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num" data-target="7">0</span><span class="stat-label">Городов</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num" data-target="2400">0</span><span class="stat-label">Клиентов</span></div>
+    </div>
+  </div>
+  <div class="hero-car-visual">
+    <div class="car-glow"></div>
+    <div class="car-emoji">🏎️</div>
+    <div class="car-reflection"></div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Скролл</span>
+  </div>
+</section>
+
+<!-- CITIES SECTION -->
+<section class="cities-section" id="cities">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">ГЕОГРАФИЯ</span>
+      <h2 class="section-title">Работаем<br><span class="gradient-text">по всей стране</span></h2>
+    </div>
+    <div class="cities-grid">
+      <div class="city-card active" onclick="selectCity('Бишкек')">
+        <div class="city-icon">🏙️</div>
+        <span class="city-name">Бишкек</span>
+        <span class="city-count">45 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Ош')">
+        <div class="city-icon">🌆</div>
+        <span class="city-name">Ош</span>
+        <span class="city-count">28 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Нарын')">
+        <div class="city-icon">🏔️</div>
+        <span class="city-name">Нарын</span>
+        <span class="city-count">15 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Баткен')">
+        <div class="city-icon">🌄</div>
+        <span class="city-name">Баткен</span>
+        <span class="city-count">12 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Талас')">
+        <div class="city-icon">🌿</div>
+        <span class="city-name">Талас</span>
+        <span class="city-count">18 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Чуй')">
+        <div class="city-icon">🌾</div>
+        <span class="city-name">Чуй</span>
+        <span class="city-count">22 авто</span>
+      </div>
+      <div class="city-card" onclick="selectCity('Ысык-Көл')">
+        <div class="city-icon">💧</div>
+        <span class="city-name">Ысык-Көл</span>
+        <span class="city-count">10 авто</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG SECTION -->
+<section class="catalog-section" id="catalog">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">КАТАЛОГ</span>
+      <h2 class="section-title">Наши<br><span class="gradient-text">автомобили</span></h2>
+    </div>
+    <div class="catalog-filters">
+      <button class="filter-btn active" onclick="filterCars('all', this)">Все</button>
+      <button class="filter-btn" onclick="filterCars('economy', this)">Эконом</button>
+      <button class="filter-btn" onclick="filterCars('business', this)">Бизнес</button>
+      <button class="filter-btn" onclick="filterCars('premium', this)">Премиум</button>
+      <button class="filter-btn" onclick="filterCars('suv', this)">Внедорожник</button>
+    </div>
+    <div class="cars-grid" id="carsGrid">
+      <!-- Cars injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS SECTION -->
+<section class="contacts-section" id="contacts">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">КОНТАКТЫ</span>
+      <h2 class="section-title">Свяжитесь<br><span class="gradient-text">с нами</span></h2>
+    </div>
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h3>Телефон</h3>
+        <p>+996 552 600 311</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Адрес</h3>
+        <p>Бишкек, пр. Чуй 123</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🕐</div>
+        <h3>Режим работы</h3>
+        <p>Ежедневно 8:00–22:00</p>
+      </div>
+      <div class="contact-card whatsapp-card" onclick="openWhatsApp()">
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Написать нам</p>
+        <button class="btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Написать в WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">AUTO<span class="logo-accent">KG</span></span>
+      </div>
+      <p class="footer-copy">© 2025 AutoKG. Все права защищены.</p>
+      <button class="footer-admin" onclick="openAdmin()">⚙</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODALS ============ -->
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal" onclick="closeModalOutside(event, 'registerModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Регистрация</h2>
+      <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+    </div>
+    <form class="modal-form" onsubmit="submitRegister(event)">
+      <div class="form-group">
+        <label>Имя</label>
+        <input type="text" id="regName" placeholder="Ваше имя" required>
+      </div>
+      <div class="form-group">
+        <label>Номер телефона</label>
+        <input type="tel" id="regPhone" placeholder="+996 XXX XXX XXX" required>
+      </div>
+      <div class="form-group">
+        <label>Город</label>
+        <select id="regCity" required>
+          <option value="">Выберите город</option>
+          <option>Бишкек</option>
+          <option>Ош</option>
+          <option>Нарын</option>
+          <option>Баткен</option>
+          <option>Талас</option>
+          <option>Чуй</option>
+          <option>Ысык-Көл</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" id="regPassword" placeholder="Придумайте пароль" required>
+      </div>
+      <button type="submit" class="btn-form-submit">Зарегистрироваться</button>
+    </form>
+    <div class="modal-success hidden" id="registerSuccess">
+      <div class="success-icon">✅</div>
+      <h3>Успешно зарегистрированы!</h3>
+      <p>Данные отправлены. Мы свяжемся с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CAR DETAIL MODAL -->
+<div class="modal-overlay" id="carModal" onclick="closeModalOutside(event, 'carModal')">
+  <div class="modal modal-large">
+    <div class="modal-header">
+      <h2 id="carModalTitle">Название авто</h2>
+      <button class="modal-close" onclick="closeModal('carModal')">✕</button>
+    </div>
+    <div class="car-modal-content">
+      <div class="car-modal-img-wrap">
+        <div class="car-modal-emoji" id="carModalEmoji">🚗</div>
+        <div class="car-modal-badge" id="carModalCategory">Эконом</div>
+      </div>
+      <div class="car-modal-info">
+        <p class="car-modal-desc" id="carModalDesc">Описание автомобиля</p>
+        <div class="car-specs" id="carModalSpecs"></div>
+        <div class="car-modal-price">
+          <span class="price-label">Цена</span>
+          <span class="price-value" id="carModalPrice">0 сом</span>
+        </div>
+        <div class="car-modal-actions">
+          <button class="btn-primary" onclick="addToCart()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            В корзину
+          </button>
+          <button class="btn-pay" onclick="openPayModal()">
+            💳 Оплатить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="payModal" onclick="closeModalOutside(event, 'payModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Оплата</h2>
+      <button class="modal-close" onclick="closeModal('payModal')">✕</button>
+    </div>
+    <div class="pay-info" id="payInfo">
+      <div class="pay-bank-card">
+        <div class="pay-bank-name" id="payBankName">Mbank</div>
+        <div class="pay-card-number" id="payCardNumber">0000 0000 0000 0000</div>
+        <div class="pay-card-holder" id="payCardHolder">ИВАН ИВАНОВ</div>
+      </div>
+      <p class="pay-instruction">Переведите сумму и прикрепите скриншот чека:</p>
+    </div>
+    <form class="modal-form" onsubmit="submitPayment(event)">
+      <div class="form-group">
+        <label>Ваше имя</label>
+        <input type="text" id="payName" placeholder="Имя" required>
+      </div>
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="tel" id="payPhone" placeholder="+996 XXX XXX XXX" required>
+      </div>
+      <div class="form-group">
+        <label>Чек (фото)</label>
+        <div class="file-upload-zone" onclick="document.getElementById('checkFile').click()">
+          <input type="file" id="checkFile" accept="image/*" style="display:none" onchange="previewCheck(this)">
+          <div class="upload-placeholder" id="uploadPlaceholder">
+            <span class="upload-icon">📎</span>
+            <span>Нажмите чтобы загрузить чек</span>
+          </div>
+          <img id="checkPreview" class="check-preview hidden" alt="Чек">
+        </div>
+      </div>
+      <button type="submit" class="btn-form-submit">Отправить заявку</button>
+    </form>
+    <div class="modal-success hidden" id="paySuccess">
+      <div class="success-icon">✅</div>
+      <h3>Заявка отправлена!</h3>
+      <p>Мы проверим оплату и свяжемся с вами.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Корзина</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Корзина пуста</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Итого: <span id="cartTotal">0</span> сом</div>
+    <button class="btn-primary" onclick="checkoutCart()">Оформить заказ</button>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal" onclick="closeModalOutside(event, 'adminModal')">
+  <div class="modal modal-admin">
+    <div class="modal-header">
+      <h2>⚙ Админ-панель</h2>
+      <button class="modal-close" onclick="closeModal('adminModal')">✕</button>
+    </div>
+    <div id="adminLogin">
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" id="adminPass" placeholder="Введите пароль">
+      </div>
+      <button class="btn-form-submit" onclick="checkAdminPass()">Войти</button>
+    </div>
+    <div id="adminPanel" class="hidden">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('cars', this)">🚗 Авто</button>
+        <button class="admin-tab" onclick="switchAdminTab('users', this)">👥 Пользователи</button>
+        <button class="admin-tab" onclick="switchAdminTab('payment', this)">💳 Реквизиты</button>
+      </div>
+
+      <!-- CARS TAB -->
+      <div class="admin-content" id="tabCars">
+        <button class="btn-primary btn-sm" onclick="showAddCarForm()">+ Добавить авто</button>
+        <div id="addCarForm" class="hidden admin-form">
+          <input type="text" id="newCarName" placeholder="Название авто">
+          <input type="text" id="newCarEmoji" placeholder="Эмодзи (🚗)">
+          <input type="number" id="newCarPrice" placeholder="Цена (сом)">
+          <select id="newCarCategory">
+            <option value="economy">Эконом</option>
+            <option value="business">Бизнес</option>
+            <option value="premium">Премиум</option>
+            <option value="suv">Внедорожник</option>
+          </select>
+          <textarea id="newCarDesc" placeholder="Описание"></textarea>
+          <input type="text" id="newCarSpecs" placeholder="Характеристики через запятую">
+          <button class="btn-form-submit" onclick="addCar()">Добавить</button>
+        </div>
+        <div id="adminCarsList" class="admin-list"></div>
+      </div>
+
+      <!-- USERS TAB -->
+      <div class="admin-content hidden" id="tabUsers">
+        <div id="adminUsersList" class="admin-list"></div>
+      </div>
+
+      <!-- PAYMENT TAB -->
+      <div class="admin-content hidden" id="tabPayment">
+        <div class="admin-form">
+          <label>Название банка</label>
+          <input type="text" id="settBankName" placeholder="Mbank">
+          <label>Номер карты</label>
+          <input type="text" id="settCardNum" placeholder="0000 0000 0000 0000">
+          <label>Имя получателя</label>
+          <input type="text" id="settCardHolder" placeholder="ИВАН ИВАНОВ">
+          <button class="btn-form-submit" onclick="savePaySettings()">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
